@@ -36,37 +36,36 @@ export default class App extends Component {
     selectedItems: []
   }
 
-  onSelectedItemsChange = () => {
-    const { selectedItems } = this.state
-    this.setState({ selectedItems })
+  onSelectedItemsChange = (selectedItems) => {
+    this.setState({ selectedItems }, () => console.warn('Selected Items: ', selectedItems))
   }
 
   render () {
-    const { selectedItems } = this.props
+    const { selectedItems } = this.state
     return (
       <View style={styles.container}>
-        <MultiSelect
-          hideTags
-          items={items}
-          uniqueKey='id'
-          ref={(component) => { this.multiSelect = component }}
-          onSelectedItemsChange={this.onSelectedItemsChange}
-          selectedItems={selectedItems}
-          selectText='Pick Items'
-          searchInputPlaceholderText='Search Items...'
-          onChangeInput={(text) => console.warn(text)}
-          altFontFamily='ProximaNova-Light'
-          tagRemoveIconColor='#CCC'
-          tagBorderColor='#CCC'
-          tagTextColor='#CCC'
-          selectedItemTextColor='#CCC'
-          selectedItemIconColor='#CCC'
-          itemTextColor='#000'
-          displayKey='name'
-          searchInputStyle={{ color: '#CCC' }}
-          submitButtonColor='#CCC'
-          submitButtonText='Submit'
-        />
+        <View style={styles.multiSelectContainer}>
+          <MultiSelect
+            items={items}
+            uniqueKey='id'
+            onSelectedItemsChange={this.onSelectedItemsChange}
+            selectedItems={selectedItems}
+            selectText='Pick Items'
+            searchInputPlaceholderText='Search Items...'
+            onChangeInput={(text) => console.warn(text)}
+            tagRemoveIconColor='#CCC'
+            tagBorderColor='#CCC'
+            tagTextColor='#CCC'
+            selectedItemTextColor='#CCC'
+            selectedItemIconColor='#CCC'
+            itemTextColor='#000'
+            displayKey='name'
+            searchInputStyle={{ color: '#CCC' }}
+            submitButtonColor='#CCC'
+            submitButtonText='Submit'
+            removeSelected
+          />
+        </View>
       </View>
     )
   }
@@ -78,5 +77,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  multiSelectContainer: {
+    height: 400,
+    width: '80%'
   }
 })

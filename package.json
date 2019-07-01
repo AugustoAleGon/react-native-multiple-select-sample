@@ -5,11 +5,15 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "fix-code": "standard --fix"
+    "fix-code": "standard --fix",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios"
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.9"
+    "react-native": "0.59.9",
+    "react-native-multiple-select": "https://github.com/jbbpatel94/react-native-multiple-select.git",
+    "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
